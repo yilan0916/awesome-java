@@ -1,3 +1,11 @@
+### IDEA ###
+.idea/*
+*.iml
+*/target/*
+*/*.iml
+/.gradle/
+/application.pid
+
 # Compiled class file
 *.class
 
