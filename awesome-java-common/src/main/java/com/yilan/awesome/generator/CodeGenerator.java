@@ -26,7 +26,7 @@ public class CodeGenerator {
         String author = "yilan0916";
         String moduleName = "system";
         String packageName = "com.yilan.awesome";
-        String[] tables = new String[]{"sys_user"};
+        String[] tables = new String[]{"sys_user", "sys_dept", "sys_job", "sys_role"};
         String[] tablePrefix = new String[]{"sys_", "t_"};
 
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/awesome-java?characterEncoding=utf-8&serverTimezone=GMT%2B8",
