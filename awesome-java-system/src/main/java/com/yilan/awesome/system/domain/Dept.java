@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yilan.awesome.base.BaseEntity;
 import java.io.Serializable;
+import java.util.Objects;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -44,4 +46,22 @@ public class Dept extends BaseEntity {
 
     @ApiModelProperty("是否启用")
     private Boolean isEnabled;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Dept dept = (Dept) o;
+        return Objects.equals(deptId, dept.deptId) &&
+                Objects.equals(name, dept.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deptId, name);
+    }
 }

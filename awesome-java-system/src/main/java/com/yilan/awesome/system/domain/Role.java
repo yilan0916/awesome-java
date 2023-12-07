@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yilan.awesome.base.BaseEntity;
 import java.io.Serializable;
+import java.util.Objects;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -40,4 +42,21 @@ public class Role extends BaseEntity {
 
     @ApiModelProperty(value = "数据权限，全部 、 本级 、 自定义")
     private String dataScope;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Role role = (Role) o;
+        return Objects.equals(roleId, role.roleId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roleId);
+    }
 }
