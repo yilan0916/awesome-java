@@ -1,16 +1,22 @@
 package com.yilan.awesome.system.rest;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yilan.awesome.system.domain.vo.UserQueryCriteria;
 import com.yilan.awesome.system.service.UserService;
 import com.yilan.awesome.system.domain.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -20,13 +26,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: yilan0916
  * @since: 2023-11-26
  */
+@Api(tags = "系统：用户管理")
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
+    @ApiOperation("导出用户数据")
+    @GetMapping(value = "/download")
+    public void exportUser(HttpServletResponse response, UserQueryCriteria criteria) throws IOException {
+        userService.download(userService.queryAll(criteria), response);
+    }
     @PostMapping
     public ResponseEntity<?> save(@RequestBody User user) {
         userService.saveOrUpdate(user);
