@@ -25,6 +25,7 @@ import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -207,6 +208,8 @@ public class RedisUtils {
             while (cursor.hasNext()) {
                 redisTemplate.delete(cursor.next());
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

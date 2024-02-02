@@ -1,0 +1,24 @@
+server:
+  port: 10001
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
