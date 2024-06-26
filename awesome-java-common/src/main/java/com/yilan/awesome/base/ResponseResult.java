@@ -1,5 +1,9 @@
 package com.yilan.awesome.base;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+
 import java.io.Serializable;
 
 /**
@@ -7,86 +11,38 @@ import java.io.Serializable;
  * @version 1.0
  * @since 2023/4/12
  */
+@Data
+@Builder
 public class ResponseResult<T> implements Serializable {
-    private Integer code;
-    private String msg;
+    private long timestamp;
+    private int code;
+    private String message;
     private T data;
 
-    public ResponseResult() {
-        this.code = HttpCodeEnum.OK.getCode();
-        this.msg = HttpCodeEnum.OK.getEnMessage() + HttpCodeEnum.OK.getZhMessage();
+    public static <T> ResponseResult<T> success() {
+        return success(null);
     }
 
-    public ResponseResult(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    public static <T> ResponseResult<T> success(T data) {
+        return ResponseResult.<T>builder()
+                .code(ResponseStatus.SUCCESS.getResponseCode())
+                .message(ResponseStatus.SUCCESS.getDescription())
+                .data(data)
+                .timestamp(System.currentTimeMillis())
+                .build();
     }
 
-    public ResponseResult(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    public static <T extends Serializable> ResponseResult<T> fail(String message) {
+        return fail(null, message);
     }
 
-    public static ResponseResult<?> okResult() {
-        return new ResponseResult<>();
+    public static <T> ResponseResult<T> fail(T data, String message) {
+        return ResponseResult.<T>builder()
+                .data(data)
+                .message(message)
+                .code(ResponseStatus.FAIL.getResponseCode())
+                .timestamp(System.currentTimeMillis())
+                .build();
     }
 
-    public static ResponseResult<?> okResult(Object data) {
-        ResponseResult<Object> result = new ResponseResult<>();
-        result.setData(data);
-        return result;
-    }
-
-    public static ResponseResult<?> okResult(int code, String msg) {
-        return new ResponseResult<>(code, msg);
-    }
-    public static ResponseResult<?> okResult(int code, String msg, Object data) {
-        return new ResponseResult<>(code, msg, data);
-    }
-
-    public static ResponseResult<?> errorResult(int code, String msg) {
-        return new ResponseResult<>(code, msg);
-    }
-
-    public static ResponseResult<?> errorResult(HttpCodeEnum enums) {
-        return new ResponseResult<>(enums.getCode(), enums.getEnMessage() + enums.getZhMessage());
-    }
-
-    public static ResponseResult<?> errorResult(HttpCodeEnum enums, String msg) {
-        return new ResponseResult<>(enums.getCode(), msg);
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "ResponseResult{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
-    }
 }
