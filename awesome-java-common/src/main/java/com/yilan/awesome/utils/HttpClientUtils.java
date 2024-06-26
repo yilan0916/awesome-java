@@ -79,7 +79,8 @@ public class HttpClientUtils {
             // 释放资源
             release();
         }
-        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
+        return null;
+//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
     public static ResponseResult<?> doPostJson(String url, Map<String, String> headers, String json) {
@@ -112,7 +113,9 @@ public class HttpClientUtils {
 // 释放资源
             release();
         }
-        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
+        return null;
+
+//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
     private static void settingHeaders(HttpRequestBase httpMethod, Map<String, String> headers) {
@@ -162,12 +165,14 @@ public class HttpClientUtils {
                     content = EntityUtils.toString(HTTP_RESPONSE.getEntity(), ENCODING);
 //                    log.debug("HttpClient请求内容" + content);
                 }
-                return ResponseResult.okResult(content);
+                return ResponseResult.success(content);
             }
         } catch (IOException e) {
             log.error("getHttpClientResult执行错误");
         }
-        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
+        return null;
+
+//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
     private static void release() {
