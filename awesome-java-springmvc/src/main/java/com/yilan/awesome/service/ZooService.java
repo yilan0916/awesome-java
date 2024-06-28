@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * @author： yilan0916
  * @date: 2024/6/27
- * @description：
  */
 public interface ZooService {
     List<Zoo> getAll();
