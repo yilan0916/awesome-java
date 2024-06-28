@@ -11,6 +11,7 @@
 
     <modules>
         <module>awesome-java-common</module>
+        <module>awesome-java-springmvc</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
@@ -57,7 +58,11 @@
                 <scope>runtime</scope>
                 <version>8.0.18</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>3.0.2</version>
+            </dependency>
             <!-- MybatisPlus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -94,6 +99,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${common.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.11.0</version>
             </dependency>
 
             <!-- excel工具 -->
