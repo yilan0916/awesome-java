@@ -1,0 +1,9 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    port: 25
+    username: 709160000@qq.com
+    password: abcd1234
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false # 关闭Thymeleaf的缓存

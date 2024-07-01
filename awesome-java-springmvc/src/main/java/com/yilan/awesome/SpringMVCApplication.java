@@ -39,7 +39,7 @@ public class SpringMVCApplication {
                 "Local访问网址: \t\t" + localURL + "\n\t" +
                 "External访问网址: \t" + externalURL + "\n\t" +
                 "接口文档地址: \t\t" + swaggerURL + "\n\t" +
-                "Profiles: \t\t\t" + env.getActiveProfiles()[0] + "\n\t" +
+                "Profiles: \t\t\t" + env.getActiveProfiles()[0] + "\n" +
                 "----------------------------------------------------------");
     }
 }
