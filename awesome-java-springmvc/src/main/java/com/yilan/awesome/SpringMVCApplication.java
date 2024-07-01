@@ -29,6 +29,11 @@ public class SpringMVCApplication {
         String localURL = String.format("http://localhost:%s%s", port, path);
         String externalURL = String.format("http://%s:%s%s", ip, port, path);
         String swaggerURL = externalURL + "/doc.html";
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application  is running! Access URLs:\n\t" +
                 "Local访问网址: \t\t" + localURL + "\n\t" +

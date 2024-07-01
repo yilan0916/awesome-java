@@ -1,6 +1,5 @@
 package com.yilan.awesome.utils;
 
-import com.yilan.awesome.base.HttpCodeEnum;
 import com.yilan.awesome.base.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;

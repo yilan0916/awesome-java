@@ -13,4 +13,21 @@
 * 全局异常处理
 * 接口的版本和平台管理（还未实现）
 
+## awesome-java-orm-mp
+
+* MP常规的CRUD
+* sql的批量操作
+* 加载多数据库
+* 代码生成器
+* 数据库备份
+* mapStruct
+
+## awesome-java-admin-server
+
+对SpringBoot应用程序进行监控
+
+## awesome-java-common
+
+整理常用公共类、工具包、配置类
+
 
