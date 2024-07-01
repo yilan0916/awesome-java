@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: orm-mp-demo
+
+server:
+  servlet:
+    context-path: /orm-mp-demo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

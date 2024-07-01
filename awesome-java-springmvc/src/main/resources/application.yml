@@ -1,7 +1,17 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: springmvc-demo
+
 
 server:
   servlet:
     context-path: /springmvc-demo
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

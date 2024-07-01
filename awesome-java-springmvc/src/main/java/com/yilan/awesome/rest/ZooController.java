@@ -1,10 +1,10 @@
 package com.yilan.awesome.rest;
 
+import com.yilan.awesome.base.PageResultVO;
 import com.yilan.awesome.base.ResponseResult;
 import com.yilan.awesome.domain.criteria.ZooCriteria;
 import com.yilan.awesome.domain.entity.Animal;
 import com.yilan.awesome.domain.entity.Zoo;
-import com.yilan.awesome.base.PageResultVO;
 import com.yilan.awesome.service.ZooService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
