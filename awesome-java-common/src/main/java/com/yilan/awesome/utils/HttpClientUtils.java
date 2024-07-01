@@ -3,11 +3,15 @@ package com.yilan.awesome.utils;
 import com.yilan.awesome.base.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -30,17 +34,20 @@ import java.util.Set;
 public class HttpClientUtils {
 
     private static final String ENCODING = "UTF-8";
-    private static final int CONNECT_TIMEOUT = 6000;
-    private static final int SOCKET_TIMEOUT = 6000;
+    private static final int CONNECT_TIMEOUT = 60000;
+    private static final int SOCKET_TIMEOUT = 60000;
+
     private static final CloseableHttpClient HTTP_CLIENT_DEFAULT;
+    private static CloseableHttpClient HTTP_CLIENT;
+
     private static CloseableHttpResponse HTTP_RESPONSE;
     private static final RequestConfig REQUEST_CONFIG;
 
     static {
         //连接池
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(128);
-        cm.setDefaultMaxPerRoute(128);
+        cm.setMaxTotal(1280);
+        cm.setDefaultMaxPerRoute(1280);
         HTTP_CLIENT_DEFAULT = HttpClients.custom()
                 .setConnectionManager(cm)
                 .setConnectionManagerShared(true)
@@ -52,7 +59,27 @@ public class HttpClientUtils {
                 .build();
     }
 
-    public static ResponseResult<?> doGet(String url, Map<String, String> headers, Map<String, String> params) {
+    private static void basicAuth(String username, String password) {
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(
+                AuthScope.ANY,
+                new UsernamePasswordCredentials(username, password));
+
+        HTTP_CLIENT = HttpClients.custom()
+                .setDefaultCredentialsProvider(credentialsProvider)
+                .build();
+    }
+
+    public static String doGet(String url, Map<String, String> headers, Map<String, String> params) {
+        return executeGet(url, headers, params, false);
+    }
+
+    public static String doGet(String url, Map<String, String> headers, Map<String, String> params, String username, String password) {
+        basicAuth(username, password);
+        return executeGet(url, headers, params, true);
+    }
+
+    private static String executeGet(String url, Map<String, String> headers, Map<String, String> params, boolean isBasicAuth) {
         //HttpGet不能封装params参数
         HttpGet httpGet;
         try {
@@ -65,13 +92,10 @@ public class HttpClientUtils {
             }
             httpGet = new HttpGet(uriBuilder.build());
             httpGet.setConfig(REQUEST_CONFIG);
-
             // 设置请求头
             settingHeaders(httpGet, headers);
-            // 选择哪个http client
-// CloseableHttpClient httpClient = switchHttpClient(hasAuth, uriBuilder, username, password);
-// 执行请求并获得响应结果
-            return getHttpClientResult(HTTP_CLIENT_DEFAULT, httpGet);
+            // 执行请求并获得响应结果
+            return getHttpClientResult(httpGet, isBasicAuth);
         } catch (URISyntaxException e) {
             log.info("URIBuilder出错");
         } finally {
@@ -79,19 +103,28 @@ public class HttpClientUtils {
             release();
         }
         return null;
-//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
-    public static ResponseResult<?> doPostJson(String url, Map<String, String> headers, String json) {
-        return executePost(url, headers, null, true, json);
+
+    public static String doPostJson(String url, Map<String, String> headers, String json) {
+        return executePost(url, headers, null, true, json, false);
     }
 
-    public static ResponseResult<?> doPostForm(String url, Map<String, String> headers, Map<String, String> params) {
-        return executePost(url, headers, params, false, null);
-
+    public static String doPostForm(String url, Map<String, String> headers, Map<String, String> params) {
+        return executePost(url, headers, params, false, null, false);
     }
 
-    private static ResponseResult<?> executePost(String url, Map<String, String> headers, Map<String, String> params, Boolean isStringEntity, String json) {
+    public static String doPostJson(String url, Map<String, String> headers, String json, String username, String password) {
+        basicAuth(username, password);
+        return executePost(url, headers, null, true, json, true);
+    }
+
+    public static String doPostForm(String url, Map<String, String> headers, Map<String, String> params, String username, String password) {
+        basicAuth(username, password);
+        return executePost(url, headers, params, false, null, true);
+    }
+
+    private static String executePost(String url, Map<String, String> headers, Map<String, String> params, Boolean isStringEntity, String json, boolean isBasicAuth) {
         //https://www.cnblogs.com/shouyaya/p/14202656.html
         HttpPost httpPost;
         try {
@@ -104,17 +137,51 @@ public class HttpClientUtils {
             } else {
                 settingParams(httpPost, params);
             }
-// CloseableHttpClient httpClient = switchHttpClient(hasAuth, uriBuilder, username, password);
-            return getHttpClientResult(HTTP_CLIENT_DEFAULT, httpPost);
+            return getHttpClientResult(httpPost, isBasicAuth);
         } catch (URISyntaxException e) {
-            log.info("URIBuilder出错");
+            log.error("URIBuilder出错");
         } finally {
-// 释放资源
+            // 释放资源
             release();
         }
         return null;
+    }
 
-//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
+    public static String doPutJson(String url, Map<String, String> headers, String json) {
+        return executePut(url, headers, null, true, json, false);
+    }
+
+    public static String doPutForm(String url, Map<String, String> headers, Map<String, String> params) {
+        return executePut(url, headers, params, false, null, false);
+    }
+
+    public static String doPutJson(String url, Map<String, String> headers, String json, String username, String password) {
+        basicAuth(username, password);
+        return executePut(url, headers, null, true, json, true);
+    }
+
+    public static String doPutForm(String url, Map<String, String> headers, Map<String, String> params, String username, String password) {
+        basicAuth(username, password);
+        return executePut(url, headers, params, false, null, true);
+    }
+
+    private static String executePut(String url, Map<String, String> headers, Map<String, String> params, Boolean isStringEntity, String json, boolean isBasicAuth) {
+        HttpPut httpPut;
+        try {
+            URIBuilder uriBuilder = new URIBuilder(url);
+            httpPut = new HttpPut(uriBuilder.build());
+            httpPut.setConfig(REQUEST_CONFIG);
+            settingHeaders(httpPut, headers);
+            if (isStringEntity) {
+                settingStringEntity(httpPut, json);
+            } else {
+                settingParams(httpPut, params);
+            }
+            return getHttpClientResult(httpPut, isBasicAuth);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static void settingHeaders(HttpRequestBase httpMethod, Map<String, String> headers) {
@@ -152,8 +219,13 @@ public class HttpClientUtils {
         }
     }
 
-    private static ResponseResult<?> getHttpClientResult(CloseableHttpClient httpClient, HttpRequestBase httpMethod) {
-
+    private static String getHttpClientResult(HttpRequestBase httpMethod, boolean basicAuth) {
+        CloseableHttpClient httpClient;
+        if (basicAuth) {
+            httpClient = HTTP_CLIENT;
+        } else {
+            httpClient = HTTP_CLIENT_DEFAULT;
+        }
         try {
             // 执行请求
             HTTP_RESPONSE = httpClient.execute(httpMethod);
@@ -162,21 +234,22 @@ public class HttpClientUtils {
                 String content = "";
                 if (HTTP_RESPONSE.getEntity() != null) {
                     content = EntityUtils.toString(HTTP_RESPONSE.getEntity(), ENCODING);
-//                    log.debug("HttpClient请求内容" + content);
+//                    log.info("HttpClient请求内容" + content);
                 }
-                return ResponseResult.success(content);
+                return content;
             }
         } catch (IOException e) {
             log.error("getHttpClientResult执行错误");
         }
         return null;
-
-//        return ResponseResult.errorResult(HttpCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
     private static void release() {
         // 释放资源
         try {
+            if (HTTP_CLIENT != null) {
+                HTTP_CLIENT.close();
+            }
             if (HTTP_CLIENT_DEFAULT != null) {
                 HTTP_CLIENT_DEFAULT.close();
             }
@@ -188,6 +261,3 @@ public class HttpClientUtils {
         }
     }
 }
-
-
-

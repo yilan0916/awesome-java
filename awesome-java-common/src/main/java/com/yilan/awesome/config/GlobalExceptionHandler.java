@@ -1,4 +1,4 @@
-package com.yilan.awesome.exception;
+package com.yilan.awesome.config;
 
 import com.yilan.awesome.base.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
