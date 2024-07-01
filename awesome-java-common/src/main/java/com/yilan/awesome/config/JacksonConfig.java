@@ -25,9 +25,7 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class JacksonConfig {
 
-    // 取消jackson序列化 https://www.cnblogs.com/scar1et/articles/14134024.html
-    // https://juejin.cn/post/7195117148140732453
-//    @Bean
+    @Bean
     public ObjectMapper getObjectMapper() {
 
         ObjectMapper om = new ObjectMapper();
