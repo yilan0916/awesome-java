@@ -34,7 +34,7 @@ public class JacksonUtils {
         //忽略 在json字符串中存在，但是在java对象中不存在对应属性的情况。防止错误
         OBJECT_MAPPER_SNAKE_CASE.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         //转换为下划线
-        OBJECT_MAPPER_SNAKE_CASE.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+//        OBJECT_MAPPER_SNAKE_CASE.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
     }
 
     private JacksonUtils() {

@@ -38,10 +38,10 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!-- mail 发送邮件 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-mail</artifactId>-->
+<!--        </dependency>-->
         <!-- thymeleaf 邮件模版引擎 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,7 +61,6 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.4</version>
         </dependency>
         <!-- knife4j接口文档 -->
         <dependency>
