@@ -208,8 +208,6 @@ public class RedisUtils {
             while (cursor.hasNext()) {
                 redisTemplate.delete(cursor.next());
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

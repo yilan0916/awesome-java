@@ -40,4 +40,26 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 指定该 Main Class 为全局的唯一入口 &ndash;&gt;-->
+<!--                    <mainClass>com.yilan.awesome.SpringMVCApplication</mainClass>-->
+<!--                    <skip>false</skip>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>repackage</id>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; 将依赖到的包都放进去 &ndash;&gt;-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+            </plugin>
+        </plugins>
+    </build>
 </project>
