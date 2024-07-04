@@ -43,7 +43,7 @@ PathVariable的解析是按照value(name)属性进行匹配，和URL参数的顺
 
 ## 接口文档管理
 
-技术方案：swagger2+Knife4j，
+技术方案：knife4j+openapi3，
 Knife4jt是对swagger在线接口文档的一个增强
 Knife4j官网：<https://doc.xiaominfo.com/>
 学习地址：<https://blog.csdn.net/xhmico/article/details/131701790>
