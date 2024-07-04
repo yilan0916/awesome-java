@@ -27,7 +27,7 @@
         <spring-boot-maven-plugin.version>2.2.2.RELEASE</spring-boot-maven-plugin.version>
         <spring-boot-admin.version>2.6.11</spring-boot-admin.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
-        <knife4j.version>4.4.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <commons-io.version>2.11.0</commons-io.version>
         <jsch.version>0.1.55</jsch.version>
@@ -67,8 +67,10 @@
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
+                <artifactId>knife4j-dependencies</artifactId>
+                <version>4.5.0</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- MybatisPlus依赖 -->

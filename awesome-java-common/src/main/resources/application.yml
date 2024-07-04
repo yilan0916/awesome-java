@@ -7,3 +7,10 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     cache: false # 关闭Thymeleaf的缓存
+
+# spring-doc 接口文档
+springdoc:
+  api-docs:
+    enabled: true # 是否启用接口文档
+knife4j:
+  enable: true # 是否启用 knife4j 增强,如果只是使用 knife4j 的 UI,则可以关闭

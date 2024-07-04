@@ -3,8 +3,8 @@ package com.yilan.awesome.rest;
 import com.yilan.awesome.base.ResponseResult;
 import com.yilan.awesome.domain.vo.UserDTO;
 import com.yilan.awesome.service.FileService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author： yilan0916
  * @date: 2024/6/27
  */
-@Api(tags = "demo应用：FileController")
+@Tag(name = "demo应用：FileController")
 @Slf4j
 @RestController
 @RequestMapping("/files")
@@ -27,7 +27,7 @@ public class FileController {
 
     private final FileService fileService;
 
-    @ApiOperation("上传文件接口")
+    @Operation(summary = "上传文件接口")
     @PostMapping("/upload")
     public ResponseResult<String> upload(@RequestPart("file") MultipartFile file) {
         String content = String.format("name = %s,originName = %s,size = %d",
@@ -36,7 +36,7 @@ public class FileController {
         return ResponseResult.success(content);
     }
 
-    @ApiOperation("上传文件并携带json数据接口")
+    @Operation(summary = "上传文件并携带json数据接口")
     @PostMapping("/uploadWithJson")
     public ResponseResult<String> uploadWithJson(@RequestPart("file") MultipartFile file,
                                                  @RequestPart("user") UserDTO user) {
@@ -48,7 +48,7 @@ public class FileController {
         return ResponseResult.success(content + user);
     }
 
-    @ApiOperation("下载文件接口")
+    @Operation(summary = "下载文件接口")
     @GetMapping("/download/{fileName:.+}")
     public void download(HttpServletResponse response, @PathVariable String fileName) {
         fileService.download(response, fileName);

@@ -2,7 +2,7 @@ package com.yilan.awesome.rest;
 
 import com.yilan.awesome.base.ResponseResult;
 import com.yilan.awesome.domain.vo.UserDTO;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
  * @author： yilan0916
  * @date: 2024/6/27
  */
-@Api(tags = "demo应用：ValidationController")
+@Tag(name = "demo应用：ValidationController")
 @Slf4j
 @Validated
 @RestController
