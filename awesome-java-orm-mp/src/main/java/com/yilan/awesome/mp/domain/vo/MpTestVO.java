@@ -10,12 +10,10 @@ import lombok.Data;
 * </p>
 *
 * @author yilan0916
-* @since 2024-07-01
+* @since 2024-07-05
 */
 @Data
-public class MpTestVO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class MpTestVO {
 
     private Long id;
 

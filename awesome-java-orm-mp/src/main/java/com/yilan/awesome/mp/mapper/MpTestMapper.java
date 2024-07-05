@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author yilan0916
- * @since 2024-07-01
+ * @since 2024-07-05
  */
 @Mapper
 public interface MpTestMapper extends BaseMapper<MpTest> {

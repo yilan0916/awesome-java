@@ -5,9 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yilan.awesome.base.BaseEntity;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -16,14 +14,12 @@ import lombok.Data;
  * </p>
  *
  * @author yilan0916
- * @since 2024-07-01
+ * @since 2024-07-05
  */
 @Data
 @TableName("mp_test")
-@ApiModel(value = "MpTest对象", description = "")
+@Schema(name = "MpTest", description = "")
 public class MpTest extends BaseEntity {
-
-    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;

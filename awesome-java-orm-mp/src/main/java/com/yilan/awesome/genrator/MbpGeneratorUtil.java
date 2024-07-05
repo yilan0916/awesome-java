@@ -32,10 +32,11 @@ public class MbpGeneratorUtil {
                 // 2、全局配置
                 .globalConfig(builder -> {
                     builder.disableOpenDir() // 禁止打开输出目录 默认 true
-                            .outputDir(OUTPUT_PATH + "/awesome-java-orm-mp/src/main/java")   // 设置输出路径：项目的 java 目录下
+                            .outputDir(OUTPUT_PATH + "/" + config.getProjectName() + "/src/main/java")   // 设置输出路径：项目的 java 目录下
                             .author(config.getAuthor()) // 设置作者名
                             // .enableKotlin() // 开启 Kotlin 模式 默认false
-                            .enableSwagger() // 开启 Swagger 模式 默认false
+                            // .enableSwagger() // 开启 Swagger 模式 默认false
+                            .enableSpringdoc()
                             .dateType(DateType.TIME_PACK) // 设置时间类型策略 TIME_PACK=LocalDateTime;ONLY_DATE=Date;
                             // .commentDate("yyyy-MM-dd") // 设置注释日期格式 默认值 yyyy-MM-dd
                             .build();
@@ -50,7 +51,7 @@ public class MbpGeneratorUtil {
                             //.mapper("mapper")   // Mapper 包名 默认值 mapper
                             // .xml("mapper")  // Mapper XML 包名 默认值 mapper.xml
                             .controller("rest") // Controller 包名 默认值 controller
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, OUTPUT_PATH + "/src/main/resources/mapper/" + config.getModuleName()))  //配置 mapper.xml 路径信息：项目的 resources 目录下
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, OUTPUT_PATH + "/" + config.getProjectName() + "/src/main/resources/mapper/" + config.getModuleName()))  //配置 mapper.xml 路径信息：项目的 resources 目录下
                             .build();
                 })
                 // 4、模版配置
@@ -74,7 +75,7 @@ public class MbpGeneratorUtil {
                             .entityBuilder()
                             .enableFileOverride() // 覆盖entity
                             .superClass(BaseEntity.class)
-                            // .disableSerialVersionUID()  // 禁用生成 serialVersionUID 默认值 true
+                            .disableSerialVersionUID()  // 禁用生成 serialVersionUID 默认值 true
                             // .enableChainModel() // 开启链式调用
                             // .enableRemoveIsPrefix() // 开启 Boolean 类型字段移除 is 前缀
                             .enableLombok() // 开启 Lombok 默认值:false

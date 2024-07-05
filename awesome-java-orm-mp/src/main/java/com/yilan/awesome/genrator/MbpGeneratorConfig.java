@@ -33,6 +33,8 @@ public class MbpGeneratorConfig {
 
     private String parent = "com.yilan.awesome";
 
+    private String projectName = "";
+
     private String moduleName = "";
 
     private String author = "yilan0916";
