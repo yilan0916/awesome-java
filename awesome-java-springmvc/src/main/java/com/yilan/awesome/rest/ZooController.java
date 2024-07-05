@@ -35,12 +35,8 @@ public class ZooController {
 
     @Operation(summary = "查询全部接口")
     @GetMapping
-    public ResponseResult<?> getAll() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("a", new Date());
-        map.put("b", LocalDateTime.now());
-        return ResponseResult.success(map);
-//        return ResponseResult.success(zooService.getAll());
+    public ResponseResult<List<Zoo>> getAll() {
+        return ResponseResult.success(zooService.getAll());
     }
 
     @Operation(summary = "根据ID查询接口")
