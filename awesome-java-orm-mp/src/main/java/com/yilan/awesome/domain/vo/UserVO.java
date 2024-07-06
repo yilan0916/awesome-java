@@ -1,30 +1,24 @@
-package com.yilan.awesome.domain.entity;
+package com.yilan.awesome.domain.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.yilan.awesome.base.BaseEntity;
+import com.yilan.awesome.domain.entity.Dept;
+import com.yilan.awesome.domain.entity.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
 /**
- * <p>
- * 系统用户 Entity
- * </p>
- *
- * @author yilan0916
- * @since 2024-07-05
+ * @author： yilan0916
+ * @date: 2024/7/5
  */
 @Data
-@TableName("sys_user")
 @Schema(name = "User", description = "系统用户")
-public class User extends BaseEntity implements Serializable {
+public class UserVO {
 
     @Schema(description = "用户ID")
     @TableId(value = "id", type = IdType.AUTO)
@@ -41,10 +35,6 @@ public class User extends BaseEntity implements Serializable {
     @TableField(exist = false)
     @Schema(description = "用户角色")
     private List<Role> roles;
-
-//    @TableField(exist = false)
-//    @Schema(description = "用户岗位")
-//    private Set<Job> jobs;
 
     @Schema(description = "用户名")
     @TableField("username")

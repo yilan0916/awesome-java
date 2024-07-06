@@ -12,7 +12,8 @@ public class Generator {
         config.setDatabase("awesome-java");
         config.setProjectName("awesome-java-orm-mp");
         config.setModuleName("mp");
-        config.setTableNames(Arrays.asList("mp_test"));
+//        config.setTableNames(Arrays.asList("sys_user","sys_dept"));
+        config.setTableNames(Arrays.asList("mp_test",""));
         MbpGeneratorUtil.generate(config);
     }
 }

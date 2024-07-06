@@ -3,6 +3,7 @@ package com.yilan.awesome.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yilan.awesome.domain.criteria.UserCriteria;
 import com.yilan.awesome.domain.entity.User;
+import com.yilan.awesome.domain.vo.UserVO;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public interface UserService {
 
-    User getById(Long id);
-    List<User> getAll();
-    IPage<User> page(UserCriteria criteria);
+    UserVO getById(Long id);
+    List<UserVO> getAll();
+    IPage<UserVO> page(UserCriteria criteria);
     User save(User user);
     User create(User user);
     User update(User user);
