@@ -41,4 +41,9 @@
 * redis常规用法
 * redis提高数据库查询效率
 
+## awesome-java-thread
+
+* 如何使用多线程
+* 多线程高级技巧
+
 

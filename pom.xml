@@ -14,6 +14,7 @@
         <module>awesome-java-springmvc</module>
         <module>awesome-java-orm-mp</module>
         <module>awesome-java-admin-server</module>
+        <module>awesome-java-cache-redis</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->

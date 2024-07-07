@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: redis
+
+server:
+  servlet:
+    context-path: /redis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
