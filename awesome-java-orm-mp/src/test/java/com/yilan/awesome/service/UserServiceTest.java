@@ -1,6 +1,7 @@
 package com.yilan.awesome.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yilan.awesome.MybatisPlusApplicationTest;
 import com.yilan.awesome.convert.UserConvert;
 import com.yilan.awesome.domain.criteria.UserCriteria;
 import com.yilan.awesome.domain.entity.User;
@@ -20,8 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @date: 2024/6/29
  */
 @Slf4j
-@SpringBootTest
-class UserServiceTest {
+class UserServiceTest extends MybatisPlusApplicationTest {
 
     @Autowired
     private UserService userService;
