@@ -15,6 +15,8 @@
         <module>awesome-java-orm-mp</module>
         <module>awesome-java-admin-server</module>
         <module>awesome-java-cache-redis</module>
+        <module>awesome-java-log-aop</module>
+        <module>awesome-java-logback</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->

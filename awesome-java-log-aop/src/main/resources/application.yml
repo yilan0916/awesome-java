@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: log-aop
+  jackson:
+    time-zone: GMT+8
+
+
+
+server:
+  servlet:
+    context-path: /log-aop
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

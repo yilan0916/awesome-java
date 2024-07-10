@@ -41,6 +41,13 @@
 * redis常规用法
 * redis提高数据库查询效率
 
+## awesome-java-log-aop
+
+* aop切面对请求进行日志记录
+* 保存日志到数据库，并提供相关的查询接口和下载接口（未实现）
+
+## awesome-java-logback
+
 ## awesome-java-thread
 
 * 如何使用多线程

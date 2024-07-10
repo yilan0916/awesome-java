@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: logback
+  jackson:
+    time-zone: GMT+8
+
+
+
+server:
+  servlet:
+    context-path: /logback
+  port: 8084
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
