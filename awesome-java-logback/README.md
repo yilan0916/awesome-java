@@ -20,3 +20,6 @@ logback.xml加载早于application.properties，所以如果你在logback.xml使
 ## logback配置文件详解
 
 https://juejin.cn/post/7200549600590282789
+
+logback.xml文件日志级别设为INFO，
+如果想打印debug日志，在yml中配置要打印debug的包名
