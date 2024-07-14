@@ -1,6 +1,5 @@
 package com.yilan.awesome.service.impl;
 
-import com.google.common.collect.Maps;
 import com.yilan.awesome.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -9,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.yilan.awesome.doamin.entity.User;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     /**
      * 模拟数据库
      */
-    private static final Map<Long, User> DATABASES = Maps.newConcurrentMap();
+    private static final Map<Long, User> DATABASES = new HashMap<>();
 
     /**
      * 初始化数据

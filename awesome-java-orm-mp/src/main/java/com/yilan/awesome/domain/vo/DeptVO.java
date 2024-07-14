@@ -3,7 +3,6 @@ package com.yilan.awesome.domain.vo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.yilan.awesome.base.BaseEntity;
 import com.yilan.awesome.domain.entity.User;
 import io.swagger.v3.oas.annotations.media.Schema;
