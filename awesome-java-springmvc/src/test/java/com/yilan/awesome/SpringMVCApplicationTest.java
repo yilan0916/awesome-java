@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SpringMVCApplicationTest {
     @Test
     public void contextLoads() {
+        System.out.println(1);
     }
 
 }
